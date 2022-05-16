@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Login with OAuth2 / OpenId Connect</title>
+  <style>
+    body {
+      margin: 50px 50px;
+    }
+
+    a {
+      display: block;
+      line-height: 40px;
+    }
+  </style>
+</head>
+<body>
+<h1>Login with OAuth2 / OpenId Connect</h1>
+<div class="container">
+  <div id="login" style="display:block">
+    <a href="/oauth2/authorization/github">Login with Github</a>
+    <a href="/oauth2/authorization/google">Login with Google</a>
+    <a href="/oauth2/authorization/facebook">Login with Facebook</a>
+    <a href="/oauth2/authorization/okta">Login with Okta</a>
+    <a href="/oauth2/authorization/linkedin">Login with LinkedIn</a>
+  </div>
+  <div id="welcome" style="display:none">
+    <img alt="Photo" src="https://lh3.googleusercontent.com/a/AATXAJwxaphQAFrm1IAkykWSokavOsHuUIeZ81TdcE60_g=s96-c"
+         width=150" height="70"><br>
+    Welcome! Your username for Google is <span id="name"></span> |
+    <button onClick="logout()">Logout</button>
+    <br>
+    <br>
+    Your scopes are <span id="scope"></span>.
+  </div>
+</div>
+<script>
+  fetch('/user')
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Something went wrong');
+    }
+  })
+  .then(data => {
+    document.getElementById('name').innerText = data.name;
+    document.getElementById('scope').innerText = data.scope;
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('welcome').style.display = 'block';
+  })
+  .catch((error) => {
+    console.error('Error: ', error);
+  });
+
+  function logout() {
+    fetch('/logout', {
+      method: 'POST',
+      headers: {
+        'X-XSRF-TOKEN': getCookie('XSRF-TOKEN')
+      }
+    })
+    .then((response) => {
+      if (response.ok) {
+        document.getElementById('login').style.display = 'block';
+        document.getElementById('welcome').style.display = 'none';
+      } else {
+        throw new Error('Something went wrong');
+      }
+    })
+    .catch((error) => {
+      console.error('Error: ', error);
+    });
+  }
+
+  function getCookie(name) {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+  }
+</script>
+</body>
+</html>
