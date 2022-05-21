@@ -13,31 +13,25 @@ spring:
           google:
             clientId: ${GOOGLE_CLIENT_ID}
             clientSecret: ${GOOGLE_CLIENT_SECRET}
-            scope: openid, profile
+            scope: profile
 
-#          facebook:
-#            clientId: ${FACEBOOK_CLIENT_ID}
-#            clientSecret: ${FACEBOOK_CLIENT_SECRET}
+          facebook:
+            clientId: ${FACEBOOK_CLIENT_ID}
+            clientSecret: ${FACEBOOK_CLIENT_SECRET}
+okta:
+  oauth2:
+    client:
+      clientId: ${OKTA_CLIENT_ID}
+      clientSecret: ${OKTA_CLIENT_SECRET}
+      authorization-uri: https://dev-14986880.okta.com/oauth2/default/v1/authorize
+
+#            accessTokenUri: https://dev-14986880.okta.com/oauth2/default/v1/token
+#            authorization-uri: https://dev-14986880.okta.com/oauth2/default/v1/authorize
+#            issuer: https://dev-14986880.okta.com/oauth2/default
+#            redirect-uri: /authorization-code/callback
 #
 #          okta:
 #            clientId: ${OKTA_CLIENT_ID}
 #            clientSecret: ${OKTA_CLIENT_SECRET}
 #            clientName: Okta
 #
-#          linkedin:
-#            clientId: ${LINKEDIN_CLIENT_ID}
-#            clientSecret: ${LINKEDIN_CLIENT_SECRET}
-#            clientName: LinkedIn
-#            authorizationGrantType: authorization_code
-#            redirectUri: "{baseUrl}/login/oauth2/code/{registrationId}"
-#            scope: r_liteprofile, r_emailaddress
-#
-#        provider:
-#          okta:
-#            issuerUri: https://${YOUR_OKTA_SUBDOMAIN:example}.okta.com/oauth2/default
-#
-#          linkedin:
-#            authorizationUri: https://www.linkedin.com/oauth/v2/authorization
-#            tokenUri: https://www.linkedin.com/oauth/v2/accessToken
-#            userInfoUri: https://api.linkedin.com/v2/me
-#            userNameAttribute: id
