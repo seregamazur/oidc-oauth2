@@ -1,20 +1,19 @@
 server:
   port: 8081
 
+google:
+  clientId: ${GOOGLE_CLIENT_ID}
+  clientSecret: ${GOOGLE_CLIENT_SECRET}
+
+github:
+  clientId: ${GITHUB_CLIENT_ID}
+  clientSecret: ${GITHUB_CLIENT_SECRET}
+
 spring:
   security:
     oauth2:
       client:
         registration:
-          github:
-            clientId: ${GITHUB_CLIENT_ID}
-            clientSecret: ${GITHUB_CLIENT_SECRET}
-
-          google:
-            clientId: ${GOOGLE_CLIENT_ID}
-            clientSecret: ${GOOGLE_CLIENT_SECRET}
-            scope: profile
-
           facebook:
             clientId: ${FACEBOOK_CLIENT_ID}
             clientSecret: ${FACEBOOK_CLIENT_SECRET}
@@ -25,13 +24,3 @@ okta:
       clientSecret: ${OKTA_CLIENT_SECRET}
       authorization-uri: https://dev-14986880.okta.com/oauth2/default/v1/authorize
 
-#            accessTokenUri: https://dev-14986880.okta.com/oauth2/default/v1/token
-#            authorization-uri: https://dev-14986880.okta.com/oauth2/default/v1/authorize
-#            issuer: https://dev-14986880.okta.com/oauth2/default
-#            redirect-uri: /authorization-code/callback
-#
-#          okta:
-#            clientId: ${OKTA_CLIENT_ID}
-#            clientSecret: ${OKTA_CLIENT_SECRET}
-#            clientName: Okta
-#
