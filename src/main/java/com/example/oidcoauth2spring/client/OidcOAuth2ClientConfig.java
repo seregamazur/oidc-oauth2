@@ -100,7 +100,7 @@ public class OidcOAuth2ClientConfig {
             .clientSecret(githubClientSecret)
             .userInfoUri("https://api.github.com/user")
             .userInfoAuthenticationMethod(AuthenticationMethod.HEADER)
-            .scope("profile", "email")
+            .scope("read:user", "read:email")
             .redirectUri("{baseUrl}/{action}/oauth2/code/{registrationId}")
             .authorizationUri("https://github.com/login/oauth/authorize")
             .tokenUri("https://github.com/login/oauth/access_token")
@@ -116,11 +116,12 @@ public class OidcOAuth2ClientConfig {
             .clientSecret(githubClientSecret)
             .userInfoUri("https://api.github.com/user")
             .userInfoAuthenticationMethod(AuthenticationMethod.HEADER)
-            .scope("openid", "profile", "email")
+            .scope("read:user", "read:email", "openid")
             .redirectUri("{baseUrl}/{action}/oauth2/code/{registrationId}")
             .authorizationUri("https://github.com/login/oauth/authorize")
             .tokenUri("https://github.com/login/oauth/access_token")
             .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
             .build();
     }
+
 }
